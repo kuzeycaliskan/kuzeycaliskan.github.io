@@ -276,6 +276,101 @@
             line-height: 1.5;
         }
 
+        /* ── COMING SOON ── */
+        .coming-soon {
+            padding: 0 16px 56px;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (min-width: 600px) {
+            .coming-soon {
+                padding: 0 24px 72px;
+            }
+        }
+
+        .coming-soon-card {
+            max-width: 760px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 36px 28px;
+            position: relative;
+            overflow: hidden;
+            border: 1.5px solid rgba(201,162,39,0.4);
+            background: linear-gradient(135deg, #0f2044 0%, #0a1628 60%, #111a30 100%);
+        }
+
+        .coming-soon-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 20%, rgba(201,162,39,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .coming-soon-card h2 {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .coming-soon-card h2 span {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-pale));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coming-soon-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 540px;
+        }
+
+        .coming-soon-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        @media (min-width: 500px) {
+            .coming-soon-features {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+
+        .cs-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(201,162,39,0.1);
+            border: 1px solid rgba(201,162,39,0.25);
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 0.83rem;
+            color: var(--gold-pale);
+            font-weight: 600;
+        }
+
         /* ── DIVIDER ── */
         .gold-divider {
             width: 60px;
@@ -399,6 +494,24 @@
                     <h3>Eşli Oyun Modu</h3>
                     <p>Eşinle takım kur, yapay zeka rakiplerine karşı strateji geliştir.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="coming-soon">
+        <div class="coming-soon-card">
+            <div class="coming-soon-badge">Çok Yakında</div>
+            <h2>Online Mod <span>Geliyor!</span></h2>
+            <p>
+                Artık sadece yapay zekaya karşı değil — gerçek arkadaşlarınla oyna!
+                Online mod ile istediğin kişiyi davet et, aynı masada buluşun ve
+                blöf ustası olduğunu herkese kanıtla. Çevrimdışı mod ise her zaman yanında olmaya devam ediyor.
+            </p>
+            <div class="coming-soon-features">
+                <div class="cs-tag">🌐 Gerçek Oyuncularla Oyna</div>
+                <div class="cs-tag">👥 Arkadaşını Davet Et</div>
+                <div class="cs-tag">📵 Offline Mod Devam Ediyor</div>
             </div>
         </div>
     </section>
