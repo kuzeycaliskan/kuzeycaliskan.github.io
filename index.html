@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blöflü Eşli Pişti</title>
-    <meta name="description" content="İnternetsiz, Hızlı ve Stratejik Kart Oyunu. Blöf Mekaniği ve Eşli Oyun Modu ile Pişti'yi yeniden keşfet!">
+    <meta name="description" content="Klasik Pişti'yi blöf mekaniğiyle birleştiren eşli (2v2) kart oyunu. Online gerçek rakiplerle yarış ya da internetsiz botlara karşı oyna!">
     <meta property="og:title" content="Blöflü Eşli Pişti">
-    <meta property="og:description" content="İnternetsiz, Hızlı ve Stratejik Kart Oyunu!">
+    <meta property="og:description" content="Blöf yap, eşinle takım kur — online gerçek rakiplerle ya da internetsiz botlara karşı oyna!">
     <meta property="og:image" content="assets/banner/banner_v3.png">
+    <script>document.documentElement.classList.add('js');</script>
     <style>
         * {
             margin: 0;
@@ -34,12 +35,7 @@
 
         /* ── HERO ── */
         .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 48px 20px 40px;
-            text-align: center;
+            padding: 48px 20px 48px;
             position: relative;
             overflow: hidden;
         }
@@ -51,6 +47,87 @@
             background: radial-gradient(ellipse at 50% 0%, rgba(201,162,39,0.18) 0%, transparent 70%);
             pointer-events: none;
         }
+
+        .hero-inner {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-visual {
+            width: 100%;
+            max-width: 760px;
+            margin-top: 36px;
+            animation: fade-up 0.8s ease-out 0.3s both;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,162,39,0.2);
+        }
+
+        @media (min-width: 960px) {
+            .hero {
+                padding: 72px 40px 80px;
+            }
+
+            .hero-inner {
+                flex-direction: row;
+                align-items: center;
+                gap: 56px;
+                text-align: left;
+            }
+
+            .hero-copy {
+                flex: 1;
+                align-items: flex-start;
+            }
+
+            .hero-visual {
+                flex: 1.15;
+                margin-top: 0;
+                max-width: none;
+            }
+        }
+
+        /* Süzülen iskambil sembolleri */
+        .suit {
+            position: absolute;
+            font-size: 2.6rem;
+            color: rgba(201,162,39,0.13);
+            pointer-events: none;
+            user-select: none;
+            animation: float-suit 14s ease-in-out infinite;
+        }
+
+        @keyframes float-suit {
+            0%, 100% { transform: translateY(0) rotate(-8deg); }
+            50% { transform: translateY(-26px) rotate(8deg); }
+        }
+
+        /* Açılış animasyonu */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .hero-copy > * { animation: fade-up 0.7s ease-out both; }
+        .hero-copy > :nth-child(1) { animation-delay: 0.05s; }
+        .hero-copy > :nth-child(2) { animation-delay: 0.15s; }
+        .hero-copy > :nth-child(3) { animation-delay: 0.25s; }
+        .hero-copy > :nth-child(4) { animation-delay: 0.35s; }
 
         .app-icon {
             width: 120px;
@@ -88,6 +165,18 @@
             width: 100%;
             max-width: 320px;
             margin-bottom: 16px;
+        }
+
+        @media (min-width: 960px) {
+            .store-buttons {
+                flex-direction: row;
+                max-width: none;
+                width: auto;
+            }
+
+            .store-btn {
+                min-width: 210px;
+            }
         }
 
         .store-btn {
@@ -158,138 +247,179 @@
             font-weight: 700;
         }
 
-        /* ── BANNER ── */
-        .banner-section {
-            padding: 0 16px 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        @media (min-width: 600px) {
-            .banner-section {
-                padding: 0 24px 64px;
-            }
-        }
-
-        .banner-section img {
-            width: 100%;
-            max-width: 760px;
-            border-radius: 12px;
-            box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,162,39,0.2);
-        }
-
-        /* ── FEATURES ── */
+        /* ── FEATURES (SONSUZ KAYAN ŞERİT) ── */
         .features {
-            padding: 0 16px 48px;
-            display: flex;
-            justify-content: center;
+            padding: 8px 0 56px;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 700px) {
             .features {
-                padding: 0 24px 72px;
+                padding: 8px 0 80px;
             }
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
-            max-width: 760px;
+        .marquee {
+            position: relative;
             width: 100%;
+            overflow: hidden;
+            /* Hover'da kalkan kartın gölgesine dikey pay */
+            padding: 10px 0 26px;
+            /* Kenarlarda yumuşak solma efekti */
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
         }
 
-        @media (min-width: 600px) {
-            .features-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
+        /* JS etkinken sürükle-bırak */
+        .marquee.is-draggable {
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-y;
+        }
+
+        .marquee.is-draggable.is-dragging {
+            cursor: grabbing;
+        }
+
+        /* Sürüklerken kartların hover kalkışı devreye girmesin */
+        .marquee.is-dragging .feature-card {
+            transition: none;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            /* İki kopya yan yana; -50% tam bir kopya kadar kayar → dikişsiz döngü */
+            animation: marquee-scroll 38s linear infinite;
+        }
+
+        @keyframes marquee-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @media (hover: hover) {
+            .marquee:hover .marquee-track {
+                animation-play-state: paused;
             }
         }
 
         .feature-card {
-            background: var(--navy-light);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            width: 250px;
+            /* Boşluk yerine sağ margin: kopya genişliği tam olsun, döngü dikişsiz kalsın */
+            margin-right: 18px;
+            min-height: 210px;
+            background: linear-gradient(160deg, #16294a 0%, var(--navy-light) 55%, #0c1a33 100%);
             border: 1px solid rgba(201,162,39,0.2);
-            border-radius: 16px;
-            padding: 22px 20px;
-            text-align: center;
-            transition: border-color 0.2s, transform 0.2s;
+            border-radius: 20px;
+            padding: 24px;
             display: flex;
-            align-items: center;
-            gap: 16px;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
 
-        @media (min-width: 600px) {
-            .feature-card {
-                flex-direction: column;
-                padding: 28px 20px;
-                gap: 0;
-            }
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(201,162,39,0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.25s;
         }
 
         @media (hover: hover) {
             .feature-card:hover {
                 border-color: rgba(201,162,39,0.5);
-                transform: translateY(-2px);
+                transform: translateY(-6px);
+                box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+            }
+
+            .feature-card:hover::after {
+                opacity: 1;
             }
         }
 
         .feature-icon {
-            font-size: 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, rgba(201,162,39,0.25), rgba(201,162,39,0.06));
+            border: 1px solid rgba(201,162,39,0.28);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
             flex-shrink: 0;
-            display: block;
-        }
-
-        @media (min-width: 600px) {
-            .feature-icon {
-                font-size: 2.4rem;
-                margin-bottom: 12px;
-            }
-        }
-
-        .feature-card .card-body {
-            text-align: left;
-        }
-
-        @media (min-width: 600px) {
-            .feature-card .card-body {
-                text-align: center;
-            }
         }
 
         .feature-card h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--gold-light);
-            margin-bottom: 4px;
-        }
-
-        @media (min-width: 600px) {
-            .feature-card h3 {
-                font-size: 1.05rem;
-                margin-bottom: 8px;
-            }
+            margin-bottom: 6px;
         }
 
         .feature-card p {
-            font-size: 0.85rem;
+            font-size: 0.87rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
-        /* ── COMING SOON ── */
-        .coming-soon {
+        /* Vurgulu Online kart — aynı boy, farklı aksan */
+        .feature-card.is-featured {
+            background: linear-gradient(160deg, #1c4670 0%, #143a5c 45%, #0c1a33 100%);
+            border-color: rgba(201,162,39,0.45);
+            box-shadow: 0 0 0 1px rgba(201,162,39,0.15), 0 8px 28px rgba(0,0,0,0.35);
+        }
+
+        .feature-badge {
+            align-self: flex-start;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border-radius: 20px;
+            margin-bottom: 2px;
+        }
+
+        /* Hareket azaltma tercihi: otomatik kaymayı durdur, elle kaydırmaya izin ver */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .marquee-track {
+                animation: none;
+            }
+        }
+
+        /* ── ONLINE MODE ── */
+        .online-mode {
             padding: 0 16px 56px;
             display: flex;
             justify-content: center;
         }
 
         @media (min-width: 600px) {
-            .coming-soon {
+            .online-mode {
                 padding: 0 24px 72px;
             }
         }
 
-        .coming-soon-card {
+        .online-mode-card {
             max-width: 760px;
             width: 100%;
             border-radius: 20px;
@@ -300,7 +430,7 @@
             background: linear-gradient(135deg, #0f2044 0%, #0a1628 60%, #111a30 100%);
         }
 
-        .coming-soon-card::before {
+        .online-mode-card::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -308,7 +438,7 @@
             pointer-events: none;
         }
 
-        .coming-soon-badge {
+        .online-mode-badge {
             display: inline-block;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: var(--navy);
@@ -319,9 +449,15 @@
             padding: 5px 14px;
             border-radius: 20px;
             margin-bottom: 18px;
+            animation: badge-pulse 2.4s ease-in-out infinite;
         }
 
-        .coming-soon-card h2 {
+        @keyframes badge-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(232,197,71,0.45); }
+            50% { box-shadow: 0 0 0 9px rgba(232,197,71,0); }
+        }
+
+        .online-mode-card h2 {
             font-size: clamp(1.4rem, 4vw, 2rem);
             font-weight: 800;
             color: var(--white);
@@ -329,21 +465,21 @@
             line-height: 1.2;
         }
 
-        .coming-soon-card h2 span {
+        .online-mode-card h2 span {
             background: linear-gradient(135deg, var(--gold-light), var(--gold-pale));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .coming-soon-card p {
+        .online-mode-card p {
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.7;
             max-width: 540px;
         }
 
-        .coming-soon-features {
+        .online-mode-features {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -351,7 +487,7 @@
         }
 
         @media (min-width: 500px) {
-            .coming-soon-features {
+            .online-mode-features {
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 10px;
@@ -369,6 +505,37 @@
             font-size: 0.83rem;
             color: var(--gold-pale);
             font-weight: 600;
+        }
+
+        /* ── SCROLL REVEAL ── */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .js .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .js .features-grid .reveal:nth-child(2) { transition-delay: 0.07s; }
+        .js .features-grid .reveal:nth-child(3) { transition-delay: 0.14s; }
+        .js .features-grid .reveal:nth-child(4) { transition-delay: 0.21s; }
+        .js .features-grid .reveal:nth-child(5) { transition-delay: 0.28s; }
+        .js .features-grid .reveal:nth-child(6) { transition-delay: 0.35s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001s !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001s !important;
+            }
+
+            .js .reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
 
         /* ── DIVIDER ── */
@@ -433,84 +600,168 @@
 
     <!-- HERO -->
     <section class="hero">
-        <img class="app-icon" src="assets/app_icon/app_icon.png" alt="Blöflü Eşli Pişti ikonu">
-        <h1>Blöflü Eşli Pişti</h1>
-        <p class="tagline">İnternetsiz, hızlı ve stratejik kart oyunu. Blöf yap, eşinle kazan!</p>
+        <span class="suit" style="top: 12%; left: 5%;">♠</span>
+        <span class="suit" style="top: 68%; left: 11%; font-size: 1.8rem; animation-delay: -4s;">♥</span>
+        <span class="suit" style="top: 18%; right: 7%; font-size: 2.2rem; animation-delay: -7s;">♦</span>
+        <span class="suit" style="top: 74%; right: 13%; font-size: 3rem; animation-delay: -10s;">♣</span>
+        <span class="suit" style="top: 42%; left: 47%; font-size: 1.6rem; animation-delay: -2s;">♠</span>
 
-        <div class="store-buttons">
-            <!-- App Store -->
-            <a class="store-btn ios" href="https://apps.apple.com/tr/app/bl%C3%B6fl%C3%BC-e%C5%9Fli-pi%C5%9Fti/id6760256369" target="_blank" rel="noopener">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                </div>
-                <div class="btn-text">
-                    <small>App Store'dan İndir</small>
-                    <span>iOS</span>
-                </div>
-            </a>
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <img class="app-icon" src="assets/app_icon/app_icon.png" alt="Blöflü Eşli Pişti ikonu">
+                <h1>Blöflü Eşli Pişti</h1>
+                <p class="tagline">Online'da gerçek rakiplerle yarış. İnternet yokken botlara karşı oyna. Blöf yap, eşinle kazan!</p>
 
-            <!-- Google Play -->
-            <a class="store-btn android" href="https://play.google.com/store/apps/details?id=com.bloflupisti.app&pcampaignid=web_share" target="_blank" rel="noopener">
-                <div class="btn-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85C3.34 21.61 3 21.09 3 20.5zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm3.35-4.31c.34.27.59.69.59 1.19s-.25.92-.59 1.19l-2.27 1.31-2.5-2.5 2.5-2.5 2.27 1.31zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
-                    </svg>
+                <div class="store-buttons">
+                    <!-- App Store -->
+                    <a class="store-btn ios" href="https://apps.apple.com/tr/app/bl%C3%B6fl%C3%BC-e%C5%9Fli-pi%C5%9Fti/id6760256369" target="_blank" rel="noopener">
+                        <div class="btn-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                        </div>
+                        <div class="btn-text">
+                            <small>App Store'dan İndir</small>
+                            <span>iOS</span>
+                        </div>
+                    </a>
+
+                    <!-- Google Play -->
+                    <a class="store-btn android" href="https://play.google.com/store/apps/details?id=com.bloflupisti.app&pcampaignid=web_share" target="_blank" rel="noopener">
+                        <div class="btn-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85C3.34 21.61 3 21.09 3 20.5zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm3.35-4.31c.34.27.59.69.59 1.19s-.25.92-.59 1.19l-2.27 1.31-2.5-2.5 2.5-2.5 2.27 1.31zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
+                            </svg>
+                        </div>
+                        <div class="btn-text">
+                            <small>Google Play'den İndir</small>
+                            <span>Android</span>
+                        </div>
+                    </a>
                 </div>
-                <div class="btn-text">
-                    <small>Google Play'den İndir</small>
-                    <span>Android</span>
-                </div>
-            </a>
+            </div>
+
+            <div class="hero-visual">
+                <img src="assets/banner/banner_v3.png" alt="Blöflü Eşli Pişti ekran görüntüsü ve özellikler">
+            </div>
         </div>
-    </section>
-
-    <!-- BANNER -->
-    <section class="banner-section">
-        <img src="assets/banner/banner_v3.png" alt="Blöflü Eşli Pişti ekran görüntüsü ve özellikler">
     </section>
 
     <!-- FEATURES -->
     <section class="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">📵</span>
-                <div class="card-body">
-                    <h3>İnternetsiz Oyun</h3>
-                    <p>İnternet bağlantısı olmadan istediğin yerde oyna. Uçakta, metroda, her yerde!</p>
+        <div class="marquee">
+            <div class="marquee-track">
+                <!-- 1. kopya (görünür) -->
+                <div class="feature-card is-featured">
+                    <span class="feature-badge">✨ Yeni</span>
+                    <span class="feature-icon">🌐</span>
+                    <div class="card-body">
+                        <h3>Online Mod</h3>
+                        <p>Gerçek rakiplerle 2v2 hızlı eşleşme. Sunucu korumalı adil oyun, hileye imkân yok.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🃏</span>
-                <div class="card-body">
-                    <h3>Blöf Mekaniği</h3>
-                    <p>Rakibini yanılt, stratejini gizle. Blöf yaparak oyunun seyrini değiştir.</p>
+                <div class="feature-card">
+                    <span class="feature-icon">🃏</span>
+                    <div class="card-body">
+                        <h3>Blöf Mekaniği</h3>
+                        <p>Kartını kapalı at, pişti blöfü yap. Rakip "Aç" derse ya yer ya yakalanır!</p>
+                    </div>
                 </div>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🤝</span>
-                <div class="card-body">
-                    <h3>Eşli Oyun Modu</h3>
-                    <p>Eşinle takım kur, yapay zeka rakiplerine karşı strateji geliştir.</p>
+                <div class="feature-card">
+                    <span class="feature-icon">👥</span>
+                    <div class="card-body">
+                        <h3>Arkadaşınla Oyna</h3>
+                        <p>Lobi kodunu paylaş, arkadaşınla eş ol. Maç sonunda rövanş iste!</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🤝</span>
+                    <div class="card-body">
+                        <h3>Eşli Oyun Modu</h3>
+                        <p>Eşinle takım kur, birlikte strateji geliştir. Karşılıklı oturanlar eş!</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📵</span>
+                    <div class="card-body">
+                        <h3>İnternetsiz Oyun</h3>
+                        <p>Kişilikli botlara karşı internet olmadan oyna. Uçakta, metroda, her yerde!</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <div class="card-body">
+                        <h3>Turnuva &amp; Modlar</h3>
+                        <p>Tek el, 101, 201 ve 8 takımlı eleme turnuvası. Her seviyeye uygun heyecan.</p>
+                    </div>
+                </div>
+
+                <!-- 2. kopya (dikişsiz döngü için, ekran okuyuculardan gizli) -->
+                <div class="feature-card is-featured" aria-hidden="true">
+                    <span class="feature-badge">✨ Yeni</span>
+                    <span class="feature-icon">🌐</span>
+                    <div class="card-body">
+                        <h3>Online Mod</h3>
+                        <p>Gerçek rakiplerle 2v2 hızlı eşleşme. Sunucu korumalı adil oyun, hileye imkân yok.</p>
+                    </div>
+                </div>
+                <div class="feature-card" aria-hidden="true">
+                    <span class="feature-icon">🃏</span>
+                    <div class="card-body">
+                        <h3>Blöf Mekaniği</h3>
+                        <p>Kartını kapalı at, pişti blöfü yap. Rakip "Aç" derse ya yer ya yakalanır!</p>
+                    </div>
+                </div>
+                <div class="feature-card" aria-hidden="true">
+                    <span class="feature-icon">👥</span>
+                    <div class="card-body">
+                        <h3>Arkadaşınla Oyna</h3>
+                        <p>Lobi kodunu paylaş, arkadaşınla eş ol. Maç sonunda rövanş iste!</p>
+                    </div>
+                </div>
+                <div class="feature-card" aria-hidden="true">
+                    <span class="feature-icon">🤝</span>
+                    <div class="card-body">
+                        <h3>Eşli Oyun Modu</h3>
+                        <p>Eşinle takım kur, birlikte strateji geliştir. Karşılıklı oturanlar eş!</p>
+                    </div>
+                </div>
+                <div class="feature-card" aria-hidden="true">
+                    <span class="feature-icon">📵</span>
+                    <div class="card-body">
+                        <h3>İnternetsiz Oyun</h3>
+                        <p>Kişilikli botlara karşı internet olmadan oyna. Uçakta, metroda, her yerde!</p>
+                    </div>
+                </div>
+                <div class="feature-card" aria-hidden="true">
+                    <span class="feature-icon">🏆</span>
+                    <div class="card-body">
+                        <h3>Turnuva &amp; Modlar</h3>
+                        <p>Tek el, 101, 201 ve 8 takımlı eleme turnuvası. Her seviyeye uygun heyecan.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- COMING SOON -->
-    <section class="coming-soon">
-        <div class="coming-soon-card">
-            <div class="coming-soon-badge">Çok Yakında</div>
-            <h2>Online Mod <span>Geliyor!</span></h2>
+    <!-- ONLINE MODE -->
+    <section class="online-mode">
+        <div class="online-mode-card reveal">
+            <div class="online-mode-badge">Yeni</div>
+            <h2>Online Mod <span>Yayında!</span></h2>
             <p>
-                Artık sadece yapay zekaya karşı değil — gerçek arkadaşlarınla oyna!
-                Online mod ile istediğin kişiyi davet et, aynı masada buluşun ve
-                blöf ustası olduğunu herkese kanıtla. Çevrimdışı mod ise her zaman yanında olmaya devam ediyor.
+                Artık sadece yapay zekaya karşı değil — gerçek rakiplerle oyna!
+                Hızlı eşleşmeyle 30 saniyede masaya otur, ya da lobi kodunu paylaşıp
+                arkadaşlarını davet et. Arkadaş listene ekle, maç sonunda rövanş iste,
+                blöf ustası olduğunu herkese kanıtla. İlerlemen bulutta güvende,
+                çevrimdışı mod ise her zaman yanında olmaya devam ediyor.
             </p>
-            <div class="coming-soon-features">
-                <div class="cs-tag">🌐 Gerçek Oyuncularla Oyna</div>
-                <div class="cs-tag">👥 Arkadaşını Davet Et</div>
+            <div class="online-mode-features">
+                <div class="cs-tag">🌐 2v2 Hızlı Eşleşme</div>
+                <div class="cs-tag">👥 Arkadaş Lobisi &amp; Davet Kodu</div>
+                <div class="cs-tag">🔁 Rövanş Sistemi</div>
+                <div class="cs-tag">☁️ Bulut Kayıt</div>
+                <div class="cs-tag">🛡️ Sunucu Korumalı Adil Oyun</div>
                 <div class="cs-tag">📵 Offline Mod Devam Ediyor</div>
             </div>
         </div>
@@ -528,6 +779,132 @@
             <a href="terms-of-use.md">Kullanım Koşulları</a>
         </div>
     </footer>
+
+    <script>
+        // Scroll-reveal: kartları görünüme girdikçe yumuşakça göster.
+        window.addEventListener('DOMContentLoaded', function () {
+            var reveals = document.querySelectorAll('.reveal');
+
+            if (!('IntersectionObserver' in window)) {
+                reveals.forEach(function (el) { el.classList.add('visible'); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            reveals.forEach(function (el) { observer.observe(el); });
+        });
+    </script>
+
+    <script>
+        // Özellik şeridi: kendiliğinden sonsuz kayar + sürükle-bırak ile hareket.
+        // JS devralınca CSS animasyonu kapatılır, konum requestAnimationFrame ile
+        // sürülür; böylece otomatik akış ile elle sürükleme sorunsuz birleşir.
+        (function () {
+            var marquee = document.querySelector('.marquee');
+            if (!marquee) return;
+
+            var track = marquee.querySelector('.marquee-track');
+            if (!track) return;
+
+            // Hareket azaltma tercihinde JS devralmaz; CSS yedeği (elle kaydırma) kalır.
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+
+            var DURATION = 38000;   // bir kopyanın tam turu (ms) — mevcut hızla aynı
+            var COPIES = 2;         // şeritteki kopya sayısı
+            var offset = 0;
+            var half = 0;           // tek kopyanın piksel genişliği
+            var last = null;
+            var dragging = false;
+            var hovering = false;
+            var startX = 0;
+            var startOffset = 0;
+
+            // CSS animasyonunu kapat, kontrolü JS'e al.
+            track.style.animation = 'none';
+            marquee.classList.add('is-draggable');
+
+            function measure() {
+                var cards = track.children;
+                var perCopy = cards.length / COPIES;
+                var w = 0;
+                for (var i = 0; i < perCopy; i++) {
+                    var c = cards[i];
+                    var s = window.getComputedStyle(c);
+                    w += c.offsetWidth + parseFloat(s.marginRight || 0) + parseFloat(s.marginLeft || 0);
+                }
+                half = w;
+            }
+
+            function wrap(v) {
+                if (half <= 0) return v;
+                v = v % half;
+                if (v > 0) v -= half;   // (-half, 0] aralığında tut
+                return v;
+            }
+
+            function frame(t) {
+                if (last === null) last = t;
+                var dt = t - last;
+                last = t;
+                if (!dragging && !hovering && half > 0) {
+                    offset = wrap(offset - (half / DURATION) * dt);
+                }
+                track.style.transform = 'translateX(' + offset + 'px)';
+                requestAnimationFrame(frame);
+            }
+
+            measure();
+            window.addEventListener('load', measure);
+            window.addEventListener('resize', measure);
+            requestAnimationFrame(frame);
+
+            // Fareyle üstüne gelince duraklat (yalnızca fare için).
+            marquee.addEventListener('pointerenter', function (e) {
+                if (e.pointerType === 'mouse') hovering = true;
+            });
+            marquee.addEventListener('pointerleave', function (e) {
+                if (e.pointerType === 'mouse') hovering = false;
+            });
+
+            // Sürükle-bırak.
+            marquee.addEventListener('pointerdown', function (e) {
+                dragging = true;
+                startX = e.clientX;
+                startOffset = offset;
+                marquee.classList.add('is-dragging');
+                if (marquee.setPointerCapture) {
+                    try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+                }
+            });
+
+            marquee.addEventListener('pointermove', function (e) {
+                if (!dragging) return;
+                offset = wrap(startOffset + (e.clientX - startX));
+            });
+
+            function endDrag(e) {
+                if (!dragging) return;
+                dragging = false;
+                marquee.classList.remove('is-dragging');
+                if (marquee.releasePointerCapture) {
+                    try { marquee.releasePointerCapture(e.pointerId); } catch (_) {}
+                }
+            }
+
+            marquee.addEventListener('pointerup', endDrag);
+            marquee.addEventListener('pointercancel', endDrag);
+        })();
+    </script>
 
 </body>
 </html>
