@@ -373,6 +373,11 @@
             line-height: 1.55;
         }
 
+        /* Uzun metinli kart biraz daha geniş (Blöf) */
+        .feature-card.is-wide {
+            width: 340px;
+        }
+
         /* Vurgulu Online kart — aynı boy, farklı aksan */
         .feature-card.is-featured {
             background: linear-gradient(160deg, #1c4670 0%, #143a5c 45%, #0c1a33 100%);
@@ -380,8 +385,12 @@
             box-shadow: 0 0 0 1px rgba(201,162,39,0.15), 0 8px 28px rgba(0,0,0,0.35);
         }
 
+        /* Rozet sağ üst köşede — akışta yer kaplamaz, ikonu aşağı itmez */
         .feature-badge {
-            align-self: flex-start;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 2;
             display: inline-block;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: var(--navy);
@@ -391,7 +400,6 @@
             text-transform: uppercase;
             padding: 4px 11px;
             border-radius: 20px;
-            margin-bottom: 2px;
         }
 
         /* Hareket azaltma tercihi: otomatik kaymayı durdur, elle kaydırmaya izin ver */
@@ -657,42 +665,42 @@
                     <span class="feature-icon">🌐</span>
                     <div class="card-body">
                         <h3>Online Mod</h3>
-                        <p>Gerçek rakiplerle 2v2 hızlı eşleşme. Sunucu korumalı adil oyun, hileye imkân yok.</p>
+                        <p>Gerçek rakiplerle 2v2 hızlı eşleşme. Sunucu korumalı adil oyun, hile yok.</p>
                     </div>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card is-wide">
                     <span class="feature-icon">🃏</span>
                     <div class="card-body">
                         <h3>Blöf Mekaniği</h3>
-                        <p>Kartını kapalı at, pişti blöfü yap. Rakip "Aç" derse ya yer ya yakalanır!</p>
+                        <p>Ortada tek kart varken kartını kapalı at. Rakibin açmazsa normal pişti puanını alırsın. Açarsa: gerçek pişti ise puanın ikiye katlanır, blöfse rakibin iki kat puan kazanır.</p>
                     </div>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">👥</span>
                     <div class="card-body">
                         <h3>Arkadaşınla Oyna</h3>
-                        <p>Lobi kodunu paylaş, arkadaşınla eş ol. Maç sonunda rövanş iste!</p>
+                        <p>Lobi kodunu paylaş, arkadaşınla aynı takımda oyna. Maç bitince rövanş iste.</p>
                     </div>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">🤝</span>
                     <div class="card-body">
                         <h3>Eşli Oyun Modu</h3>
-                        <p>Eşinle takım kur, birlikte strateji geliştir. Karşılıklı oturanlar eş!</p>
+                        <p>Karşındaki oyuncu takım arkadaşın. 2v2 ya da 4 kişilik masada eşinle strateji kur.</p>
                     </div>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">📵</span>
                     <div class="card-body">
                         <h3>İnternetsiz Oyun</h3>
-                        <p>Kişilikli botlara karşı internet olmadan oyna. Uçakta, metroda, her yerde!</p>
+                        <p>İnternet olmadan, farklı karakterlerdeki botlara karşı oyna. Uçakta, metroda, her yerde.</p>
                     </div>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">🏆</span>
                     <div class="card-body">
                         <h3>Turnuva &amp; Modlar</h3>
-                        <p>Tek el, 101, 201 ve 8 takımlı eleme turnuvası. Her seviyeye uygun heyecan.</p>
+                        <p>Hızlı Oyun, 101 Biter, 201 Biter ve 8 takımlı eleme turnuvası. Her keyfe bir mod.</p>
                     </div>
                 </div>
 
@@ -702,42 +710,42 @@
                     <span class="feature-icon">🌐</span>
                     <div class="card-body">
                         <h3>Online Mod</h3>
-                        <p>Gerçek rakiplerle 2v2 hızlı eşleşme. Sunucu korumalı adil oyun, hileye imkân yok.</p>
+                        <p>Gerçek rakiplerle 2v2 hızlı eşleşme. Sunucu korumalı adil oyun, hile yok.</p>
                     </div>
                 </div>
-                <div class="feature-card" aria-hidden="true">
+                <div class="feature-card is-wide" aria-hidden="true">
                     <span class="feature-icon">🃏</span>
                     <div class="card-body">
                         <h3>Blöf Mekaniği</h3>
-                        <p>Kartını kapalı at, pişti blöfü yap. Rakip "Aç" derse ya yer ya yakalanır!</p>
+                        <p>Ortada tek kart varken kartını kapalı at. Rakibin açmazsa normal pişti puanını alırsın. Açarsa: gerçek pişti ise puanın ikiye katlanır, blöfse rakibin iki kat puan kazanır.</p>
                     </div>
                 </div>
                 <div class="feature-card" aria-hidden="true">
                     <span class="feature-icon">👥</span>
                     <div class="card-body">
                         <h3>Arkadaşınla Oyna</h3>
-                        <p>Lobi kodunu paylaş, arkadaşınla eş ol. Maç sonunda rövanş iste!</p>
+                        <p>Lobi kodunu paylaş, arkadaşınla aynı takımda oyna. Maç bitince rövanş iste.</p>
                     </div>
                 </div>
                 <div class="feature-card" aria-hidden="true">
                     <span class="feature-icon">🤝</span>
                     <div class="card-body">
                         <h3>Eşli Oyun Modu</h3>
-                        <p>Eşinle takım kur, birlikte strateji geliştir. Karşılıklı oturanlar eş!</p>
+                        <p>Karşındaki oyuncu takım arkadaşın. 2v2 ya da 4 kişilik masada eşinle strateji kur.</p>
                     </div>
                 </div>
                 <div class="feature-card" aria-hidden="true">
                     <span class="feature-icon">📵</span>
                     <div class="card-body">
                         <h3>İnternetsiz Oyun</h3>
-                        <p>Kişilikli botlara karşı internet olmadan oyna. Uçakta, metroda, her yerde!</p>
+                        <p>İnternet olmadan, farklı karakterlerdeki botlara karşı oyna. Uçakta, metroda, her yerde.</p>
                     </div>
                 </div>
                 <div class="feature-card" aria-hidden="true">
                     <span class="feature-icon">🏆</span>
                     <div class="card-body">
                         <h3>Turnuva &amp; Modlar</h3>
-                        <p>Tek el, 101, 201 ve 8 takımlı eleme turnuvası. Her seviyeye uygun heyecan.</p>
+                        <p>Hızlı Oyun, 101 Biter, 201 Biter ve 8 takımlı eleme turnuvası. Her keyfe bir mod.</p>
                     </div>
                 </div>
             </div>
