@@ -46,7 +46,11 @@
   .positioning .grid{display:grid;grid-template-columns:1fr;gap:14px;}
   @media(min-width:700px){.positioning .grid{grid-template-columns:1fr 1fr;}}
   .pcard{background:var(--bg2);border:1px solid rgba(108,77,246,0.18);border-radius:16px;padding:22px;}
-  .pcard .ico{font-size:1.6rem;margin-bottom:10px;}
+  .pcard .ico{width:40px;height:40px;border-radius:11px;margin-bottom:14px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(108,77,246,0.14);border:1px solid rgba(108,77,246,0.3);}
+  .pcard .ico svg{width:22px;height:22px;stroke:var(--brand-light);fill:none;stroke-width:1.7;
+    stroke-linecap:round;stroke-linejoin:round;}
   .pcard h3{color:var(--brand-pale);font-size:1.05rem;margin-bottom:6px;}
   .pcard p{color:var(--muted);font-size:0.9rem;line-height:1.55;}
   .section-title{text-align:center;font-size:1.5rem;font-weight:800;margin:24px 0 8px;}
@@ -66,13 +70,13 @@
         <div class="app-icon">K</div>
         <h1>Sahip olduklarını paylaş</h1>
         <p class="tagline">Kept — kişisel envanter sosyal ağı. Zevkini sergile, arkadaşlarınla hediyeleş, hiçbir doğum gününü kaçırma.</p>
-        <div class="coming">✨ Yakında App Store &amp; Google Play</div>
+        <div class="coming">Yakında App Store &amp; Google Play</div>
       </div>
       <div class="hero-visual">
         <div class="phone">
-          <div class="row"><div class="av">A</div><div class="t">Ali<small>Doğum gününe 3 gün 🎂</small></div><div class="gift">Hediye</div></div>
+          <div class="row"><div class="av">A</div><div class="t">Ali<small>Doğum gününe 3 gün kaldı</small></div><div class="gift">Hediye</div></div>
           <div class="row"><div class="av">Z</div><div class="t">Zeynep<small>Wishlist: Kayak gözlüğü…</small></div><div class="gift">Hediye</div></div>
-          <div class="row"><div class="av">M</div><div class="t">Mert<small>Sana AirPods aldı 🎁</small></div></div>
+          <div class="row"><div class="av">M</div><div class="t">Mert<small>Sana bir hediye aldı</small></div></div>
         </div>
       </div>
     </div>
@@ -82,10 +86,18 @@
     <h2 class="section-title">Neden Kept?</h2>
     <p class="section-sub">Kimi uygulamada fikirlerini, kiminde anlarını, kiminde işini paylaşırsın. Kept'te <b>sahip olduklarını ve zevkini</b> paylaşırsın — üstelik hediyeleşmeyi kolaylaştırarak.</p>
     <div class="grid">
-      <div class="pcard"><div class="ico">🎁</div><h3>Doğru hediye, her zaman</h3><p>Arkadaşlarının wishlist'ini gör, daha önce ne alındığını bil. Aynı hediyeyi iki kez alma.</p></div>
-      <div class="pcard"><div class="ico">🔔</div><h3>Hiçbir doğum gününü kaçırma</h3><p>Doğum günü yaklaşınca hatırlatma al, hazırlıksız yakalanma.</p></div>
-      <div class="pcard"><div class="ico">🤫</div><h3>Sürpriz bozulmaz</h3><p>Hediyeni sürpriz olarak işaretle; alıcı reveal gününe kadar göremez.</p></div>
-      <div class="pcard"><div class="ico">🔒</div><h3>Mahremiyet sende</h3><p>Profil, wishlist ve envanterinin kimlere görüneceğini bölüm bölüm sen seçersin.</p></div>
+      <div class="pcard">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13M12 8S10.5 4 8 4a2 2 0 100 4h4zM12 8s1.5-4 4-4a2 2 0 110 4h-4z"/></svg></div>
+        <h3>Doğru hediye, her zaman</h3><p>Arkadaşlarının wishlist'ini gör, daha önce ne alındığını bil. Aynı hediyeyi iki kez alma.</p></div>
+      <div class="pcard">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div>
+        <h3>Hiçbir doğum gününü kaçırma</h3><p>Doğum günü yaklaşınca hatırlatma al, hazırlıksız yakalanma.</p></div>
+      <div class="pcard">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.1A9 9 0 0121 12c-.5 1-1.2 2-2 2.8M6.6 6.6A15 15 0 003 12s3.5 6 9 6a9 9 0 004.3-1.1"/><path d="M9.9 9.9a3 3 0 004.2 4.2"/></svg></div>
+        <h3>Sürpriz bozulmaz</h3><p>Hediyeni sürpriz olarak işaretle; alıcı reveal gününe kadar göremez.</p></div>
+      <div class="pcard">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
+        <h3>Mahremiyet sende</h3><p>Profil, wishlist ve envanterinin kimlere görüneceğini bölüm bölüm sen seçersin.</p></div>
     </div>
     <a class="back" href="index.html">← Tüm uygulamalar</a>
   </section>
