@@ -37,79 +37,99 @@
   <header>
     <div class="brand"><div class="logo">K</div><b>Kept</b></div>
     <div class="lang"><a href="#tr">Türkçe</a><a href="#en">English</a></div>
-    <p class="muted">Son güncelleme / Last updated: 2026-09-06</p>
+    <p class="muted">Son güncelleme / Last updated: 2026-10-29</p>
   </header>
-
-  <div class="note">Not: Bu metin bir <b>taslaktır</b> ve yayından önce hukuki incelemeden geçirilecektir. This document is a <b>draft</b> pending legal review before launch.</div>
 
   <!-- ── TÜRKÇE ── -->
   <section class="doc" id="tr">
-    <h1>Gizlilik Politikası</h1>
-    <p class="muted">Kept ("uygulama"), kişisel envanter ve hediyeleşme odaklı bir sosyal ağdır. Gizliliğine önem veriyoruz. Bu politika hangi verileri, neden ve nasıl işlediğimizi açıklar (KVKK ve GDPR uyumlu).</p>
+    <h1>Gizlilik Politikası ve KVKK Aydınlatma Metni</h1>
+    <p class="muted">Kept ("uygulama"), kişisel envanter ve hediyeleşme odaklı, arkadaşlar arası bir sosyal ağdır. Bu metin hangi verileri, neden, hangi hukuki dayanakla işlediğimizi, kimlerle paylaştığımızı ve haklarını açıklar (6698 sayılı KVKK ve GDPR).</p>
+    <p><b>Veri sorumlusu:</b> Kuzey Çalışkan (bireysel geliştirici). İletişim: <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a></p>
 
     <h2>Topladığımız veriler</h2>
     <ul>
-      <li><b>Hesap:</b> Apple veya Google ile giriş yaptığında sağlanan kimlik (e-posta, kullanıcı kimliği).</li>
-      <li><b>Profil:</b> kullanıcı adı, ad, doğum günü ve isteğe bağlı bilgiler (avatar, meslek, ilgi alanları).</li>
-      <li><b>İçerik:</b> istek listesi (wishlist), hediye kayıtları, arkadaşlıklar.</li>
-      <li><b>Telefon numarası (isteğe bağlı):</b> yalnızca rehber eşleştirme için, <b>şifrelenmiş/anahtarlı özet (HMAC)</b> olarak saklanır; ham numara profilinde gösterilmez, kayıtlı tutulmaz.</li>
-      <li><b>Bildirim jetonu:</b> doğum günü hatırlatmaları gönderebilmek için cihaz push jetonu.</li>
+      <li><b>Hesap:</b> Apple veya Google ile giriş yaptığında sağlayıcının ilettiği e-posta adresi ve kimlik. Apple'ın "e-postamı gizle" seçeneğini kullanabilirsin. Kept şifre tutmaz.</li>
+      <li><b>Profil:</b> kullanıcı adı, görünen ad ve doğum günü (hatırlatmalar için; doğum yılını yalnız sen görürsün). İsteğe bağlı: profil fotoğrafı, meslek, hakkında yazısı.</li>
+      <li><b>İçerik:</b> istek listesi öğeleri ve yapıştırdığın ürün bağlantıları, hediye kayıtları ve notları, hediye fotoğrafları ve sesli açılış videosu, anlar (24 saat sonra silinir), yorumlar, hediye event'leri ve ortak hediye katkı beyanları, duyurduğun özel günler, arkadaşlıklar, engelleme ve şikayet kayıtları.</li>
+      <li><b>Bildirim jetonu:</b> hatırlatmaları, arkadaşlık isteklerini, event ve yorum bildirimlerini iletmek için cihazının push jetonu. Bildirim izni cihaz ayarından verilir ve geri alınabilir.</li>
+      <li><b>Çökme raporları:</b> uygulama çökerse teknik rapor (cihaz modeli, işletim sistemi sürümü, hata yığını). Kimliğinle ilişkilendirilmez.</li>
     </ul>
+    <p><b>Toplamadıklarımız:</b> rehberin, telefon numaran, konumun, reklam kimliğin, ödeme bilgilerin. Kept reklam veya analitik SDK'sı içermez. Yapıştırdığın mağaza bağlantısının önizlemesini sunucumuz çeker; cihazın mağazayla doğrudan iletişim kurmaz.</p>
 
-    <h2>Verileri neden işliyoruz</h2>
+    <h2>Neden ve hangi dayanakla işliyoruz</h2>
     <ul>
-      <li>Hesabını oluşturmak ve uygulamayı sağlamak.</li>
-      <li>Arkadaşlarının wishlist'ini görmen, hediye geçmişini takip etmen.</li>
-      <li>Doğum günü hatırlatma bildirimleri göndermek.</li>
-      <li>Kötüye kullanımı önlemek ve güvenliği sağlamak.</li>
+      <li><b>Hizmeti sunmak</b> (sözleşmenin ifası — KVKK m.5/2-c, GDPR m.6/1-b): hesabını açmak, listeni ve hediyelerini saklamak, arkadaşlarına izin verdiğin kadarını göstermek, bildirim göndermek.</li>
+      <li><b>Güvenlik ve kötüye kullanımı önlemek</b> (meşru menfaat — KVKK m.5/2-f, GDPR m.6/1-f): şikayet ve engelleme kayıtları, çökme raporları, hız sınırlama.</li>
+      <li><b>İsteğe bağlı alanlar</b> (açık rıza — KVKK m.5/1, GDPR m.6/1-a): profil fotoğrafı, meslek, hakkında; istediğin an silebilirsin.</li>
     </ul>
 
     <h2>Görünürlük ve paylaşım</h2>
-    <p>Profil, wishlist ve hediye geçmişi bölümlerinin görünürlüğünü sen kontrol edersin (herkese açık / sadece arkadaşlar / kapalı). Verilerini reklam amacıyla üçüncü taraflara satmayız. Altyapı sağlayıcılarımız: <b>Supabase</b> (veritabanı/kimlik) ve <b>Google Firebase</b> (bildirim ve anonim çökme raporları). Bu sağlayıcılar verileri yalnızca hizmeti sağlamak için işler.</p>
+    <p>Profil, istek listesi ve hediye geçmişi bölümlerinin kimlere görüneceğini sen seçersin (herkese açık / sadece arkadaşlar / kapalı). Arkadaşların listende kimin ne ayırdığını veya havuz açtığını görür; sen görmezsin — sürpriz tasarım gereği korunur. Verilerini satmayız, reklam için paylaşmayız, üçüncü taraf analitik kullanmayız.</p>
+    <p>Verilerini bizim adımıza işleyen sağlayıcılar: <b>Supabase</b> (veritabanı, kimlik doğrulama, dosya depolama ve sunucu fonksiyonları; Avrupa Birliği, Frankfurt), <b>Google Firebase</b> (anonim çökme raporları ve Android bildirim iletimi), <b>Apple</b> (iOS bildirim iletimi). Bu sağlayıcılar verileri yalnızca hizmeti sağlamak için işler. Verilerin Avrupa Birliği'nde saklanır; yurt dışına bu aktarım KVKK m.9 kapsamında, uygulamaya giriş yaparken onayladığın bu metne dayanır.</p>
+
+    <h2>Güvenlik</h2>
+    <p>Tüm aktarım TLS ile şifrelenir. Erişim veritabanı düzeyinde satır bazlı yetkilendirme ile sınırlıdır: bir içeriği yalnız sahibi ve sahibinin izin verdiği kişiler okuyabilir.</p>
 
     <h2>Saklama ve silme</h2>
-    <p>Hesabını uygulama içinden <b>Ayarlar → Hesabı Sil</b> ile kalıcı olarak silebilirsin. Silindiğinde profilin, wishlist'in, arkadaşlıkların ve aldığın hediyeler silinir; arkadaşlarına verdiğin hediyeler onların geçmişinde <b>anonimleştirilerek</b> kalır.</p>
+    <p>Verilerin hesabın açık olduğu sürece saklanır; anlar 24 saat sonra otomatik silinir. Hesabını uygulama içinden <b>Ben → Ayarlar → Hesabı sil</b> ile kalıcı olarak silebilirsin. Silindiğinde profilin, istek listen, arkadaşlıkların, fotoğrafların ve aldığın hediyeler silinir; arkadaşlarına verdiğin hediyeler onların geçmişinde <b>anonimleştirilerek</b> kalır. Yedek kopyalar en geç 30 gün içinde temizlenir.</p>
 
-    <h2>Haklarınız (KVKK / GDPR)</h2>
-    <p>Verilerine erişme, düzeltme, silme ve işlemeye itiraz etme hakkına sahipsin. Talepler için bize ulaş.</p>
+    <h2>Çocuklar</h2>
+    <p>Kept 13 yaş altı için değildir. 13 yaşından küçük bir kullanıcı fark edersek hesabı ve verilerini sileriz.</p>
+
+    <h2>Hakların (KVKK m.11 / GDPR)</h2>
+    <p>Verilerine erişme, işlenip işlenmediğini öğrenme, düzeltme, silme, işlemenin kısıtlanmasını isteme, itiraz etme ve taşınabilirlik haklarına sahipsin. Başvurularını <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a> adresine iletebilirsin; en geç 30 gün içinde yanıtlarız. Kişisel Verileri Koruma Kurulu'na (AB'de ilgili denetim otoritesine) şikayet hakkın saklıdır.</p>
+
+    <h2>Değişiklikler</h2>
+    <p>Bu metni güncellediğimizde yukarıdaki tarihi değiştiririz; önemli değişiklikleri uygulama içinde duyururuz.</p>
 
     <h2>İletişim</h2>
-    <p>Sorular için: <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a></p>
+    <p>Sorular ve başvurular için: <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a></p>
   </section>
 
   <!-- ── ENGLISH ── -->
   <section class="doc" id="en">
     <h1>Privacy Policy</h1>
-    <p class="muted">Kept is a personal-inventory social network centered on gifting. This policy explains what data we process, why, and how (KVKK & GDPR compliant).</p>
+    <p class="muted">Kept is a personal-inventory social network centred on gifting between friends. This policy explains what data we process, why, on which legal basis, whom we share it with, and your rights (Turkish Data Protection Law no. 6698 "KVKK" and the GDPR).</p>
+    <p><b>Data controller:</b> Kuzey Çalışkan (individual developer). Contact: <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a></p>
 
     <h2>Data we collect</h2>
     <ul>
-      <li><b>Account:</b> identity provided when you sign in with Apple or Google (email, user id).</li>
-      <li><b>Profile:</b> username, name, birthday, and optional details (avatar, occupation, interests).</li>
-      <li><b>Content:</b> wishlist items, gift records, friendships.</li>
-      <li><b>Phone number (optional):</b> used only for contacts matching, stored as a <b>keyed hash (HMAC)</b>; the raw number is never shown on your profile or retained.</li>
-      <li><b>Notification token:</b> device push token so we can send birthday reminders.</li>
+      <li><b>Account:</b> the e-mail address and identity your provider passes on when you sign in with Apple or Google. Apple's "Hide my email" works with Kept. Kept stores no passwords.</li>
+      <li><b>Profile:</b> username, display name and birthday (for reminders; only you can see the year). Optional: profile photo, occupation, about text.</li>
+      <li><b>Content:</b> wishlist items and the product links you paste, gift records and notes, gift photos and the unboxing video with audio, stories (deleted after 24 hours), comments, gift events and group-gift pledges, the special days you announce, friendships, block and report records.</li>
+      <li><b>Notification token:</b> your device's push token, to deliver reminders, friend requests, event and comment notifications. Notification permission is granted in the device settings and can be withdrawn there.</li>
+      <li><b>Crash reports:</b> a technical report if the app crashes (device model, OS version, stack trace). Not linked to your identity.</li>
     </ul>
+    <p><b>What we do not collect:</b> your contacts, phone number, location, advertising identifier or payment details. Kept contains no advertising or analytics SDK. Previews of the shop links you paste are fetched by our server; your device never contacts the shop directly.</p>
 
-    <h2>Why we process it</h2>
+    <h2>Why we process it, and on what basis</h2>
     <ul>
-      <li>To create your account and provide the app.</li>
-      <li>To let you see friends' wishlists and track gift history.</li>
-      <li>To send birthday reminder notifications.</li>
-      <li>To prevent abuse and keep the service secure.</li>
+      <li><b>Providing the service</b> (performance of a contract — KVKK art. 5/2-c, GDPR art. 6/1-b): creating your account, storing your wishlist and gifts, showing friends only what you allow, sending notifications.</li>
+      <li><b>Security and abuse prevention</b> (legitimate interest — KVKK art. 5/2-f, GDPR art. 6/1-f): report and block records, crash reports, rate limiting.</li>
+      <li><b>Optional fields</b> (consent — KVKK art. 5/1, GDPR art. 6/1-a): profile photo, occupation, about text; you can remove them at any time.</li>
     </ul>
 
-    <h2>Visibility & sharing</h2>
-    <p>You control the visibility of your profile, wishlist and gift-history sections (public / friends only / off). We do not sell your data to third parties for advertising. Our infrastructure providers are <b>Supabase</b> (database/auth) and <b>Google Firebase</b> (notifications and anonymous crash reports), which process data solely to provide the service.</p>
+    <h2>Visibility &amp; sharing</h2>
+    <p>You choose who sees each section of your profile, wishlist and gift history (public / friends only / off). Your friends can see who reserved or pooled for an item on your list; you cannot — the surprise is protected by design. We do not sell your data, share it for advertising, or use third-party analytics.</p>
+    <p>Providers that process data on our behalf: <b>Supabase</b> (database, authentication, file storage and server functions; European Union, Frankfurt), <b>Google Firebase</b> (anonymous crash reports and Android push delivery), <b>Apple</b> (iOS push delivery). They process data solely to provide the service. Your data is stored in the European Union; for users in Türkiye this transfer abroad rests on your acceptance of this policy when you sign in (KVKK art. 9).</p>
 
-    <h2>Retention & deletion</h2>
-    <p>You can permanently delete your account in-app via <b>Settings → Delete account</b>. Your profile, wishlist, friendships and received gifts are removed; gifts you gave friends remain in their history, <b>anonymized</b>.</p>
+    <h2>Security</h2>
+    <p>All traffic is encrypted with TLS. Access is restricted at the database level with row-level authorisation: a piece of content can be read only by its owner and the people the owner allows.</p>
 
-    <h2>Your rights (KVKK / GDPR)</h2>
-    <p>You have the right to access, correct, delete your data and object to its processing. Contact us for requests.</p>
+    <h2>Retention &amp; deletion</h2>
+    <p>Your data is kept while your account exists; stories are deleted automatically after 24 hours. You can permanently delete your account in-app via <b>Me → Settings → Delete account</b>. Your profile, wishlist, friendships, photos and received gifts are removed; gifts you gave friends remain in their history, <b>anonymised</b>. Backup copies are purged within 30 days.</p>
+
+    <h2>Children</h2>
+    <p>Kept is not intended for anyone under 13. If we learn that a user is under 13 we delete the account and its data.</p>
+
+    <h2>Your rights (KVKK art. 11 / GDPR)</h2>
+    <p>You have the right to access your data, to learn whether it is processed, to have it corrected or deleted, to restrict or object to processing, and to data portability. Send requests to <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a>; we answer within 30 days at the latest. You may also lodge a complaint with the Turkish Personal Data Protection Authority (or your supervisory authority in the EU).</p>
+
+    <h2>Changes</h2>
+    <p>When we update this policy we change the date above and announce significant changes in the app.</p>
 
     <h2>Contact</h2>
-    <p>Questions: <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a></p>
+    <p>Questions and requests: <a href="mailto:kuzyagame1@gmail.com">kuzyagame1@gmail.com</a></p>
   </section>
 
   <footer>
