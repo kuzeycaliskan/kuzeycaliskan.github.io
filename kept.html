@@ -3,111 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kept — Sahip olduklarını paylaş</title>
-<meta name="description" content="Kept: kişisel envanter sosyal ağı. Sahip olduklarını, zevkini paylaş; arkadaşlarınla hediyeleş, hiçbir doğum gününü kaçırma.">
-<meta property="og:title" content="Kept">
-<meta property="og:description" content="Sahip olduklarını, zevkini paylaş. Arkadaşlarınla hediyeleş.">
+<title>Kept — Arkadaş grubunun hediye hafızası</title>
+<meta name="description" content="Kept, yakın arkadaş grubunun ortak hediye hafızası: istek listeleri, kimin ne aldığı, ortak hediye, sürprizi bozmayan hediye etkinlikleri ve açılış anı. Yalnız arkadaşların görür.">
+<meta property="og:title" content="Kept — Arkadaş grubunun hediye hafızası">
+<meta property="og:description" content="İstek listesi, hediyeyi kim alıyor, ortak hediye ve açılış anı — yalnız arkadaşların görür. Yakında iOS ve Android'de.">
+<meta property="og:image" content="https://kuzeycaliskan.github.io/kept/img/icon.png">
+<meta property="og:url" content="https://kuzeycaliskan.github.io/kept.html">
+<link rel="icon" type="image/png" href="kept/img/icon.png">
+<link rel="apple-touch-icon" href="kept/img/icon.png">
 <style>
+  @font-face{font-family:"Manrope";font-weight:500;font-display:swap;src:url("kept/fonts/Manrope-Medium.ttf") format("truetype");}
+  @font-face{font-family:"Manrope";font-weight:700;font-display:swap;src:url("kept/fonts/Manrope-Bold.ttf") format("truetype");}
   *{box-sizing:border-box;margin:0;padding:0;}
-  :root{--bg:#0f0a1e;--bg2:#171030;--brand:#6C4DF6;--brand-light:#9b7bff;--brand-pale:#c7b6ff;--white:#fff;--muted:#a99ec9;}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--white);min-height:100vh;}
-  a{color:var(--brand-light);text-decoration:none;}
-  .hero{padding:56px 20px;position:relative;overflow:hidden;}
-  .hero::before{content:'';position:absolute;inset:0;
-    background:radial-gradient(ellipse at 50% 0%,rgba(108,77,246,0.25) 0%,transparent 70%);pointer-events:none;}
-  .hero-inner{position:relative;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;
-    align-items:center;text-align:center;gap:30px;}
-  @media(min-width:900px){.hero-inner{flex-direction:row;text-align:left;gap:56px;}
-    .hero-copy{flex:1;align-items:flex-start;}.hero-visual{flex:1;}}
-  .hero-copy{display:flex;flex-direction:column;align-items:center;}
-  @media(min-width:900px){.hero-copy{align-items:flex-start;}}
-  .app-icon{width:104px;height:104px;border-radius:24px;margin-bottom:22px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-light));
-    display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:800;color:#fff;
-    box-shadow:0 0 44px rgba(108,77,246,0.5),0 8px 32px rgba(0,0,0,0.5);}
-  h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800;line-height:1.1;margin-bottom:16px;
-    background:linear-gradient(135deg,var(--brand-light),var(--brand-pale));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .tagline{font-size:clamp(1.05rem,3vw,1.25rem);color:var(--muted);max-width:440px;line-height:1.6;margin-bottom:28px;}
-  .coming{display:inline-flex;align-items:center;gap:8px;background:rgba(108,77,246,0.15);
-    border:1px solid rgba(108,77,246,0.4);border-radius:30px;padding:10px 20px;font-weight:700;
-    font-size:0.9rem;color:var(--brand-pale);}
-  .hero-visual{width:100%;max-width:420px;}
-  .phone{background:linear-gradient(160deg,#221844,#140d2b);border:1px solid rgba(108,77,246,0.3);
-    border-radius:28px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,0.6);}
-  .phone .row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);
-    border-radius:14px;padding:12px 14px;margin-bottom:10px;}
-  .phone .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-light));
-    flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;}
-  .phone .t{font-size:0.85rem;}.phone .t small{display:block;color:var(--muted);font-size:0.72rem;}
-  .phone .gift{margin-left:auto;background:var(--brand);color:#fff;border-radius:8px;padding:5px 12px;font-size:0.75rem;font-weight:700;}
-  .positioning{max-width:900px;margin:0 auto;padding:20px 20px 40px;}
-  .positioning .grid{display:grid;grid-template-columns:1fr;gap:14px;}
-  @media(min-width:700px){.positioning .grid{grid-template-columns:1fr 1fr;}}
-  .pcard{background:var(--bg2);border:1px solid rgba(108,77,246,0.18);border-radius:16px;padding:22px;}
-  .pcard .ico{width:40px;height:40px;border-radius:11px;margin-bottom:14px;
-    display:flex;align-items:center;justify-content:center;
-    background:rgba(108,77,246,0.14);border:1px solid rgba(108,77,246,0.3);}
-  .pcard .ico svg{width:22px;height:22px;stroke:var(--brand-light);fill:none;stroke-width:1.7;
-    stroke-linecap:round;stroke-linejoin:round;}
-  .pcard h3{color:var(--brand-pale);font-size:1.05rem;margin-bottom:6px;}
-  .pcard p{color:var(--muted);font-size:0.9rem;line-height:1.55;}
-  .section-title{text-align:center;font-size:1.5rem;font-weight:800;margin:24px 0 8px;}
-  .section-sub{text-align:center;color:var(--muted);max-width:560px;margin:0 auto 28px;font-size:0.95rem;}
-  footer{background:rgba(0,0,0,0.3);border-top:1px solid rgba(108,77,246,0.15);padding:36px 20px;text-align:center;margin-top:20px;}
-  footer p{color:var(--muted);font-size:0.86rem;margin-bottom:6px;}
-  .flinks{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:16px;padding-top:16px;
-    border-top:1px solid rgba(255,255,255,0.06);}
-  .flinks a{color:var(--muted);font-size:0.82rem;}
-  .back{display:inline-block;margin:24px 0 0;color:var(--muted);font-size:0.85rem;}
+  :root{--nude:#F1E6DB;--white:#FFFFFF;--ink:#0B0A0E;--muted:#5E5660;--violet:#6C4DF6;--line:rgba(11,10,14,0.10);}
+  html{scroll-behavior:smooth;}
+  body{font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:500;background:var(--nude);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--violet);text-decoration:none;}
+  img{display:block;max-width:100%;height:auto;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px;}
+
+  /* top bar */
+  .top{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:700;font-size:1.2rem;}
+  .brand img{width:40px;height:40px;border-radius:11px;}
+  .top nav{display:flex;gap:18px;font-size:0.92rem;}
+  .top nav a{color:var(--ink);}
+  .top nav a:hover{color:var(--violet);}
+
+  /* hero */
+  .hero{padding:40px 0 56px;display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+  @media(min-width:860px){.hero{grid-template-columns:1.15fr 1fr;gap:48px;padding:56px 0 72px;}}
+  .hero h1{font-size:clamp(2.1rem,5.6vw,3.6rem);font-weight:700;line-height:1.08;letter-spacing:-0.02em;margin-bottom:20px;}
+  .hero h1 em{font-style:normal;color:var(--violet);}
+  .lead{font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--muted);max-width:520px;margin-bottom:28px;}
+  .pill{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);border-radius:999px;
+    padding:12px 22px;font-weight:700;font-size:0.95rem;}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--violet);}
+  .hero-note{margin-top:16px;font-size:0.88rem;color:var(--muted);}
+  .hero-note a{font-weight:700;}
+
+  /* phone frame */
+  .phone{width:min(300px,78vw);margin:0 auto;border-radius:48px;background:var(--ink);padding:10px;}
+  .phone img{border-radius:38px;}
+  @media(min-width:860px){.phone{width:320px;}}
+
+  /* sections */
+  section{padding:48px 0;}
+  .kicker{color:var(--violet);font-weight:700;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+  h2{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:700;line-height:1.15;letter-spacing:-0.015em;margin-bottom:14px;}
+  .sub{color:var(--muted);max-width:620px;font-size:1.02rem;}
+
+  /* steps: text + screen, alternating */
+  .step{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:36px 0;border-top:1px solid var(--line);}
+  .step:first-of-type{border-top:0;}
+  @media(min-width:760px){.step{grid-template-columns:1fr 1fr;gap:56px;}
+    .step:nth-child(even) .step-text{order:2;}}
+  .step h3{font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:700;line-height:1.2;margin-bottom:12px;}
+  .step h3 em{font-style:normal;color:var(--violet);}
+  .step p{color:var(--muted);font-size:1rem;max-width:460px;}
+  .step .phone{width:min(260px,70vw);}
+  @media(min-width:760px){.step .phone{width:280px;}}
+
+  /* screens strip */
+  .strip-wrap{background:var(--white);}
+  .strip{display:flex;gap:22px;overflow-x:auto;padding:8px 20px 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:var(--line) transparent;}
+  .shot{flex:0 0 auto;width:220px;scroll-snap-align:start;}
+  .shot .phone{width:220px;padding:7px;border-radius:36px;}
+  .shot .phone img{border-radius:29px;}
+  .shot p{margin-top:12px;font-weight:700;font-size:0.95rem;line-height:1.3;text-align:center;}
+  .strip-head{padding:48px 20px 16px;max-width:1040px;margin:0 auto;}
+
+  /* promise cards */
+  .cards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px;}
+  @media(min-width:700px){.cards{grid-template-columns:1fr 1fr 1fr;}}
+  .card{background:var(--white);border-radius:20px;padding:24px;}
+  .card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;}
+  .card p{color:var(--muted);font-size:0.95rem;}
+
+  /* closing */
+  .close{text-align:center;padding:64px 0 56px;}
+  .close h2{margin-bottom:12px;}
+  .close .sub{margin:0 auto 24px;}
+  .demo-note{font-size:0.82rem;color:var(--muted);margin-top:22px;}
+
+  footer{border-top:1px solid var(--line);padding:32px 0 44px;color:var(--muted);font-size:0.88rem;}
+  footer .row{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;align-items:center;}
+  footer .links{display:flex;flex-wrap:wrap;gap:8px 18px;}
+  footer .links a{color:var(--muted);}
+  footer .links a:hover{color:var(--violet);}
+  footer p a{font-weight:700;}
 </style>
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="app-icon">K</div>
-        <h1>Sahip olduklarını paylaş</h1>
-        <p class="tagline">Kept — kişisel envanter sosyal ağı. Zevkini sergile, arkadaşlarınla hediyeleş, hiçbir doğum gününü kaçırma.</p>
-        <div class="coming">Yakında App Store &amp; Google Play</div>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="kept.html"><img src="kept/img/icon.png" alt="Kept uygulama ikonu" width="40" height="40">Kept</a>
+      <nav>
+        <a href="#nasil">Nasıl çalışır</a>
+        <a href="#ekranlar">Ekranlar</a>
+        <a href="https://www.instagram.com/keptgift/" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h1>Arkadaş grubunun <em>hediye</em> hafızası.</h1>
+        <p class="lead">Kept, yakın arkadaşlarınla birlikte kullandığın bir hediye uygulaması. İstediğin şeyleri listene yazarsın, arkadaşların görür; biri "ben alıyorum" dediğinde aynı hediye iki kez alınmaz. Doğum günü yaklaşınca sürprizi birlikte planlarsınız; hediye açıldığında o an da hediyeyle birlikte saklanır.</p>
+        <span class="pill"><span class="dot"></span>Yakında App Store ve Google Play'de</span>
+        <p class="hero-note">Ücretsiz. Reklam yok, satın alma yok. Haberdar olmak için <a href="https://www.instagram.com/keptgift/" rel="noopener">@keptgift</a>.</p>
       </div>
-      <div class="hero-visual">
-        <div class="phone">
-          <div class="row"><div class="av">A</div><div class="t">Ali<small>Doğum gününe 3 gün kaldı</small></div><div class="gift">Hediye</div></div>
-          <div class="row"><div class="av">Z</div><div class="t">Zeynep<small>Wishlist: Kayak gözlüğü…</small></div><div class="gift">Hediye</div></div>
-          <div class="row"><div class="av">M</div><div class="t">Mert<small>Sana bir hediye aldı</small></div></div>
-        </div>
+      <div class="phone"><img src="kept/img/02_home_upcoming.webp" width="660" height="1434" alt="Kept ana sayfası, Yaklaşanlar sekmesi: bir arkadaşın hediye etkinliğine davet ve 'Sana bir sürpriz hazırlanıyor' bildirimi, altında yaklaşan günler." loading="eager"></div>
+    </section>
+  </div>
+
+  <section id="nasil" class="wrap">
+    <p class="kicker">Nasıl çalışır</p>
+    <h2>Dört adımda, sürpriz bozulmadan.</h2>
+    <p class="sub">Her ekran uygulamanın kendisinden; isimler ve ürünler örnek dünyadan.</p>
+
+    <div class="step">
+      <div class="step-text">
+        <h3>Ne istediğini <em>yaz</em>.</h3>
+        <p>İstediğin şeyi link, fiyat ve notla ekle. Kept mağaza sayfasının önizlemesini getirir, arkadaşların neyi kastettiğini görür. Liste büyüdükçe klasörlere ayırırsın.</p>
+      </div>
+      <div class="phone"><img src="kept/img/03_wishlist.webp" width="660" height="1434" alt="Kept'te kendi istek listesi: Kitaplar, Mutfak, Spor klasörleri ve ad, site, fiyat bilgisiyle ürün kartları." loading="lazy"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-text">
+        <h3>Kim alıyor, <em>belli</em>.</h3>
+        <p>Arkadaşının listesinde "Ben alıyorum" dersin; diğerleri bunu görür ve kimse aynısını almaz. Pahalı bir hediye için "ortak alalım" dersin; herkes ne kadar koyacağını yazar, çubuk fiyata ne kadar kaldığını gösterir. Parayı aranızda halledersiniz, Kept üzerinden geçmez. Listenin sahibi bunların hiçbirini görmez.</p>
+      </div>
+      <div class="phone"><img src="kept/img/09_pool.webp" width="660" height="1434" alt="Bir arkadaşın listesinde ortak hediye sayfası: mor ilerleme çubuğu, toplanan tutar ve katılanlar listesi." loading="lazy"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-text">
+        <h3>Sürprizi <em>birlikte</em> planla.</h3>
+        <p>Bir arkadaşının doğum günü, düğünü ya da yeni işi için etkinlik oluşturursun, arkadaşlarını davet edersin. Panoda konuşur, kimin ne getirdiğini görürsünüz. Doğum günü sahibi açıklanana kadar hiçbir şey görmez; açıklanınca kimlerin katıldığını görür ve teşekkür eder.</p>
+      </div>
+      <div class="phone"><img src="kept/img/05_event.webp" width="660" height="1434" alt="Bir doğum günü için açılmış hediye etkinliği: tarih ve geri sayım, üyeler, kaydedilmiş hediye ve fikirler." loading="lazy"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-text">
+        <h3>Açılış anını <em>sakla</em>.</h3>
+        <p>Verdiğin ve aldığın hediyeleri fotoğraf ve notla kaydedersin. Hediye açıldığında o anın fotoğrafı hediyenin kapağı olur; arkadaşların akışlarında görür. Yıllar sonra da kimin ne verdiği, kimin ne aldığı tek yerde durur.</p>
+      </div>
+      <div class="phone"><img src="kept/img/06_gift_unboxing.webp" width="660" height="1434" alt="Bir hediyenin detay sayfası: açılış anının kapak fotoğrafı, veren ve alan, hatıralar." loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="ekranlar" class="strip-wrap">
+    <div class="strip-head">
+      <p class="kicker">Ekranlar</p>
+      <h2>Uygulamanın tamamı.</h2>
+    </div>
+    <div class="strip">
+      <div class="shot"><div class="phone"><img src="kept/img/01_home_feed.webp" width="660" height="1434" alt="Ana sayfa akışı: arkadaşlar arasındaki hediyeler, en üstte açılış kartı." loading="lazy"></div><p>Her hediyenin bir hikâyesi var</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/02_home_upcoming.webp" width="660" height="1434" alt="Ana sayfa, Yaklaşanlar sekmesi: etkinlik daveti ve sürpriz bildirimi." loading="lazy"></div><p>Sana bir sürpriz hazırlanıyor</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/03_wishlist.webp" width="660" height="1434" alt="Kendi istek listesi, klasörlerle." loading="lazy"></div><p>İstek listeni klasörlerle düzenle</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/04_friend_wishlist.webp" width="660" height="1434" alt="Bir arkadaşın istek listesi: bir ürünü başkası alıyor, birinde ortak hediye ilerliyor." loading="lazy"></div><p>Ortak alın, sürpriz bozulmasın</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/05_event.webp" width="660" height="1434" alt="Hediye etkinliği sayfası." loading="lazy"></div><p>Sürprizi arkadaşlarınla birlikte planla</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/06_gift_unboxing.webp" width="660" height="1434" alt="Hediye detayı ve açılış kapağı." loading="lazy"></div><p>Açılış anını fotoğrafla sakla</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/07_upcoming.webp" width="660" height="1434" alt="Yaklaşanlar: doğum günleri ve özel günler, kaç gün kaldığıyla." loading="lazy"></div><p>Hiçbir özel günü kaçırma</p></div>
+      <div class="shot"><div class="phone"><img src="kept/img/08_privacy.webp" width="660" height="1434" alt="Gizlilik ayarları: profil, istek listesi ve hediye geçmişi için kimin göreceği." loading="lazy"></div><p>Kimin göreceğine sen karar ver</p></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <p class="kicker">Söz</p>
+    <h2>Yalnız arkadaşların görür.</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Varsayılan olarak arkadaşlar</h3>
+        <p>Profilin, istek listen ve hediye geçmişin sen değiştirmedikçe yalnız arkadaşlarına görünür. Arkadaş eklemek için kullanıcı adı ya da davet kodu yeter.</p>
+      </div>
+      <div class="card">
+        <h3>Sürpriz bozulmaz</h3>
+        <p>Kimin ne ayırttığını, ortak hediyeye kimin katıldığını, etkinlikte ne konuşulduğunu listenin sahibi görmez. Hediyeyi sürpriz olarak işaretlersen seçtiğin tarihe kadar gizli kalır.</p>
+      </div>
+      <div class="card">
+        <h3>Hiçbir gün unutulmaz</h3>
+        <p>Arkadaşlarının doğum günleri ve duyurdukları özel günler tek listede, kaç gün kaldığıyla birlikte. Yılbaşında çekiliş yaparsınız; herkes bir isim çeker, yalnız kendi çektiğini görür.</p>
       </div>
     </div>
   </section>
 
-  <section class="positioning">
-    <h2 class="section-title">Neden Kept?</h2>
-    <p class="section-sub">Kimi uygulamada fikirlerini, kiminde anlarını, kiminde işini paylaşırsın. Kept'te <b>sahip olduklarını ve zevkini</b> paylaşırsın — üstelik hediyeleşmeyi kolaylaştırarak.</p>
-    <div class="grid">
-      <div class="pcard">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13M12 8S10.5 4 8 4a2 2 0 100 4h4zM12 8s1.5-4 4-4a2 2 0 110 4h-4z"/></svg></div>
-        <h3>Doğru hediye, her zaman</h3><p>Arkadaşlarının wishlist'ini gör, daha önce ne alındığını bil. Aynı hediyeyi iki kez alma.</p></div>
-      <div class="pcard">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div>
-        <h3>Hiçbir doğum gününü kaçırma</h3><p>Doğum günü yaklaşınca hatırlatma al, hazırlıksız yakalanma.</p></div>
-      <div class="pcard">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.1A9 9 0 0121 12c-.5 1-1.2 2-2 2.8M6.6 6.6A15 15 0 003 12s3.5 6 9 6a9 9 0 004.3-1.1"/><path d="M9.9 9.9a3 3 0 004.2 4.2"/></svg></div>
-        <h3>Sürpriz bozulmaz</h3><p>Hediyeni sürpriz olarak işaretle; alıcı reveal gününe kadar göremez.</p></div>
-      <div class="pcard">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
-        <h3>Mahremiyet sende</h3><p>Profil, wishlist ve envanterinin kimlere görüneceğini bölüm bölüm sen seçersin.</p></div>
-    </div>
-    <a class="back" href="index.html">← Tüm uygulamalar</a>
+  <section class="wrap close">
+    <h2>Yakında iOS ve Android'de.</h2>
+    <p class="sub">Çıktığı gün ilk <a href="https://www.instagram.com/keptgift/" rel="noopener">@keptgift</a>'te duyurulur.</p>
+    <span class="pill"><span class="dot"></span>App Store ve Google Play'e geliyor</span>
+    <p class="demo-note">Bu sayfadaki ekranlarda görünen isimler ve ürünler örnektir; gerçek kullanıcı değildir.</p>
   </section>
 
   <footer>
-    <p>Her türlü soru ve destek için:</p>
-    <p><a href="mailto:kept.giftory@gmail.com">kept.giftory@gmail.com</a></p>
-    <div class="flinks">
-      <a href="kept/privacy.html">Gizlilik Politikası</a>
-      <a href="kept/terms.html">Kullanım Şartları</a>
+    <div class="wrap row">
+      <p>Soru ve destek: <a href="mailto:kept.giftory@gmail.com">kept.giftory@gmail.com</a></p>
+      <div class="links">
+        <a href="kept/privacy.html">Gizlilik Politikası</a>
+        <a href="kept/terms.html">Kullanım Şartları</a>
+        <a href="kept/delete-account.html">Hesap silme</a>
+        <a href="https://www.instagram.com/keptgift/" rel="noopener">Instagram</a>
+        <a href="index.html">Tüm uygulamalar</a>
+      </div>
     </div>
   </footer>
 </body>

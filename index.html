@@ -36,8 +36,8 @@
     font-size:36px;font-weight:800;margin-bottom:18px;}
   .pisti .icon{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#0a1628;
     box-shadow:0 0 32px rgba(201,162,39,0.4);}
-  .kept .icon{background:linear-gradient(135deg,var(--violet),var(--violet-light));color:#fff;
-    box-shadow:0 0 32px rgba(108,77,246,0.45);}
+  .kept .icon{overflow:hidden;box-shadow:0 0 32px rgba(108,77,246,0.45);}
+  .kept .icon img{width:100%;height:100%;display:block;}
   .app h2{font-size:1.5rem;font-weight:800;margin-bottom:8px;}
   .pisti h2{color:var(--gold-light);}
   .kept h2{color:var(--violet-light);}
@@ -71,9 +71,9 @@
 
       <a class="app kept" href="kept.html">
         <span class="badge">Yakında</span>
-        <div class="icon">K</div>
+        <div class="icon"><img src="kept/img/icon.png" alt="Kept uygulama ikonu"></div>
         <h2>Kept</h2>
-        <p>Kişisel envanter sosyal ağı. Sahip olduklarını ve zevkini paylaş; arkadaşlarınla hediyeleş, hiçbir doğum gününü kaçırma.</p>
+        <p>Arkadaş grubunun hediye hafızası. İstek listesi, hediyeyi kim alıyor, ortak hediye ve açılış anı; yalnız arkadaşların görür.</p>
         <span class="cta">İncele →</span>
       </a>
     </div>
