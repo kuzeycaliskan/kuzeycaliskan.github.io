@@ -29,7 +29,20 @@
   .brand img{width:40px;height:40px;border-radius:11px;}
   .top nav{display:flex;gap:18px;font-size:0.92rem;flex-shrink:0;}
   .top nav a{color:var(--ink);white-space:nowrap;}
-  @media(max-width:560px){.top nav a.sec{display:none;}}
+  .top nav a:hover{color:var(--violet);}
+  /* narrow screens: the same three links under a menu button */
+  .menu{display:none;position:relative;}
+  .menu summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:999px;background:var(--white);
+    display:flex;align-items:center;justify-content:center;}
+  .menu summary::-webkit-details-marker{display:none;}
+  .menu summary svg{width:22px;height:22px;stroke:var(--ink);stroke-width:2;stroke-linecap:round;fill:none;}
+  .menu[open] summary{background:var(--ink);}
+  .menu[open] summary svg{stroke:var(--white);}
+  .menu .panel{position:absolute;right:0;top:54px;z-index:10;min-width:200px;background:var(--white);border-radius:20px;
+    padding:8px;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(11,10,14,0.12);}
+  .menu .panel a{color:var(--ink);font-weight:700;padding:12px 16px;border-radius:14px;white-space:nowrap;}
+  .menu .panel a:hover{background:var(--nude);}
+  @media(max-width:560px){.top nav{display:none;}.menu{display:block;}}
   .top nav a:hover{color:var(--violet);}
 
   /* hero */
@@ -102,10 +115,18 @@
     <div class="top">
       <a class="brand" href="kept.html"><img src="kept/img/icon.png" alt="Fiyonk uygulama ikonu" width="40" height="40">Fiyonk</a>
       <nav>
-        <a class="sec" href="#nasil">Nasıl çalışır</a>
-        <a class="sec" href="#ekranlar">Ekranlar</a>
+        <a href="#nasil">Nasıl çalışır</a>
+        <a href="#ekranlar">Ekranlar</a>
         <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">Instagram</a>
       </nav>
+      <details class="menu">
+        <summary aria-label="Menü"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <div class="panel">
+          <a href="#nasil">Nasıl çalışır</a>
+          <a href="#ekranlar">Ekranlar</a>
+          <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">Instagram</a>
+        </div>
+      </details>
     </div>
 
     <section class="hero">
@@ -212,5 +233,6 @@
       </div>
     </div>
   </footer>
+<script>document.querySelectorAll('.menu .panel a').forEach(a=>a.addEventListener('click',()=>a.closest('details').removeAttribute('open')));</script>
 </body>
 </html>
