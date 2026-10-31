@@ -6,7 +6,7 @@
 <title>Fiyonk — Arkadaş grubunun hediye hafızası</title>
 <meta name="description" content="Fiyonk, yakın arkadaş grubunun ortak hediye hafızası: istek listeleri, kimin ne aldığı, ortak hediye, sürprizi bozmayan hediye etkinlikleri ve açılış anı. Yalnız arkadaşların görür.">
 <meta property="og:title" content="Fiyonk — Arkadaş grubunun hediye hafızası">
-<meta property="og:description" content="İstek listesi, hediyeyi kim alıyor, ortak hediye ve açılış anı — yalnız arkadaşların görür. Yakında iOS ve Android'de.">
+<meta property="og:description" content="İstek listesi, hediyeyi kim alıyor, ortak hediye ve açılış anı — yalnız arkadaşların görür. App Store'da; Google Play'de yakında.">
 <meta property="og:image" content="https://kuzeycaliskan.github.io/kept/img/icon.png">
 <meta property="og:url" content="https://kuzeycaliskan.github.io/kept.html">
 <link rel="icon" type="image/png" href="kept/img/icon.png">
@@ -54,6 +54,11 @@
   .pill{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);border-radius:999px;
     padding:12px 22px;font-weight:700;font-size:0.95rem;}
   .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--violet);}
+  a.pill:hover{background:var(--violet);}
+  .pill.soon{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+  .pill.soon .dot{background:var(--muted);}
+  .stores{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .close .stores{justify-content:center;}
   .hero-note{margin-top:16px;font-size:0.88rem;color:var(--muted);}
   .hero-note a{font-weight:700;}
 
@@ -133,8 +138,11 @@
       <div>
         <h1>Arkadaş grubunun <em>hediye</em> hafızası.</h1>
         <p class="lead">Fiyonk, yakın arkadaşlarınla birlikte kullandığın bir hediye uygulaması. İstediğin şeyleri listene yazarsın, arkadaşların görür; biri "ben alıyorum" dediğinde aynı hediye iki kez alınmaz. Doğum günü yaklaşınca sürprizi birlikte planlarsınız; hediye açıldığında o an da hediyeyle birlikte saklanır.</p>
-        <span class="pill"><span class="dot"></span>Yakında App Store ve Google Play'de</span>
-        <p class="hero-note">Ücretsiz. Reklam yok, satın alma yok. Haberdar olmak için <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">@fiyonk.app</a>.</p>
+        <div class="stores">
+          <a class="pill" href="https://apps.apple.com/tr/app/fiyonk-gifts-with-friends/id6811387486" rel="noopener"><span class="dot"></span>App Store'dan indir</a>
+          <span class="pill soon"><span class="dot"></span>Google Play'de yakında</span>
+        </div>
+        <p class="hero-note">Ücretsiz. Reklam yok, satın alma yok. Android sürümü çıktığı gün <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">@fiyonk.app</a>'te duyurulur.</p>
       </div>
       <div class="phone"><img src="kept/img/02_home_upcoming.webp" width="660" height="1434" alt="Fiyonk ana sayfası, Yaklaşanlar sekmesi: bir arkadaşın hediye etkinliğine davet ve 'Sana bir sürpriz hazırlanıyor' bildirimi, altında yaklaşan günler." loading="eager"></div>
     </section>
@@ -215,9 +223,12 @@
   </section>
 
   <section class="wrap close">
-    <h2>Yakında iOS ve Android'de.</h2>
-    <p class="sub">Çıktığı gün ilk <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">@fiyonk.app</a>'te duyurulur.</p>
-    <span class="pill"><span class="dot"></span>App Store ve Google Play'e geliyor</span>
+    <h2>Fiyonk App Store'da.</h2>
+    <p class="sub">iPhone için şimdi indirilebilir. Android sürümü Google Play'e geliyor; çıktığı gün <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">@fiyonk.app</a>'te duyurulur.</p>
+    <div class="stores">
+      <a class="pill" href="https://apps.apple.com/tr/app/fiyonk-gifts-with-friends/id6811387486" rel="noopener"><span class="dot"></span>App Store'dan indir</a>
+      <span class="pill soon"><span class="dot"></span>Google Play'de yakında</span>
+    </div>
     <p class="demo-note">Bu sayfadaki ekranlarda görünen isimler ve ürünler örnektir; gerçek kullanıcı değildir.</p>
   </section>
 
