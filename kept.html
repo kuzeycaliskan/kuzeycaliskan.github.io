@@ -27,8 +27,9 @@
   .top{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
   .brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:700;font-size:1.2rem;}
   .brand img{width:40px;height:40px;border-radius:11px;}
-  .top nav{display:flex;gap:18px;font-size:0.92rem;}
-  .top nav a{color:var(--ink);}
+  .top nav{display:flex;gap:18px;font-size:0.92rem;flex-shrink:0;}
+  .top nav a{color:var(--ink);white-space:nowrap;}
+  @media(max-width:560px){.top nav a.sec{display:none;}}
   .top nav a:hover{color:var(--violet);}
 
   /* hero */
@@ -101,8 +102,8 @@
     <div class="top">
       <a class="brand" href="kept.html"><img src="kept/img/icon.png" alt="Fiyonk uygulama ikonu" width="40" height="40">Fiyonk</a>
       <nav>
-        <a href="#nasil">Nasıl çalışır</a>
-        <a href="#ekranlar">Ekranlar</a>
+        <a class="sec" href="#nasil">Nasıl çalışır</a>
+        <a class="sec" href="#ekranlar">Ekranlar</a>
         <a href="https://www.instagram.com/fiyonk.app/" rel="noopener">Instagram</a>
       </nav>
     </div>
