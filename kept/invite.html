@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiyonk'a davet</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Bir arkadaşın seni Fiyonk'a davet etti. Uygulamayı indir, davet koduyla arkadaş olun.">
+<meta property="og:title" content="Fiyonk'a davet edildin">
+<meta property="og:description" content="Arkadaş grubunun hediye hafızası. Uygulamayı indir, davet koduyla arkadaş olun.">
+<meta property="og:image" content="https://kuzeycaliskan.github.io/kept/img/icon.png">
+<link rel="icon" type="image/png" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<style>
+  @font-face{font-family:"Manrope";font-weight:500;font-display:swap;src:url("fonts/Manrope-Medium.ttf") format("truetype");}
+  @font-face{font-family:"Manrope";font-weight:700;font-display:swap;src:url("fonts/Manrope-Bold.ttf") format("truetype");}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--nude:#F1E6DB;--white:#FFFFFF;--ink:#0B0A0E;--muted:#5E5660;--violet:#5D3FD3;--line:rgba(11,10,14,0.10);}
+  body{font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:500;background:var(--nude);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;}
+  a{color:var(--violet);text-decoration:none;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;width:100%;}
+  .top{display:flex;align-items:center;padding:22px 0;}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:700;font-size:1.2rem;}
+  .brand img{width:40px;height:40px;border-radius:11px;display:block;}
+  main{flex:1;display:flex;align-items:center;padding:24px 0 48px;}
+  .card{background:var(--white);border-radius:28px;padding:32px 24px;text-align:center;width:100%;}
+  .card img{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;display:block;}
+  h1{font-size:clamp(1.6rem,5vw,2rem);font-weight:700;line-height:1.15;letter-spacing:-0.015em;margin-bottom:10px;}
+  .sub{color:var(--muted);font-size:1rem;margin-bottom:24px;}
+  .code-label{font-size:0.82rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-weight:700;margin-bottom:6px;}
+  .code{font-size:1.8rem;font-weight:700;letter-spacing:0.18em;margin-bottom:6px;font-variant-numeric:tabular-nums;}
+  .copy{background:none;border:0;color:var(--violet);font:inherit;font-weight:700;cursor:pointer;padding:8px 12px;border-radius:999px;}
+  .copy:hover{background:var(--nude);}
+  .actions{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+  .pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ink);color:var(--white);
+    border-radius:999px;padding:14px 22px;font-weight:700;font-size:1rem;}
+  .pill:hover{background:var(--violet);}
+  .pill.soft{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+  .pill.soft:hover{background:var(--nude);}
+  .hidden{display:none !important;}
+  .note{margin-top:18px;font-size:0.85rem;color:var(--muted);}
+  footer{padding:20px 0 32px;color:var(--muted);font-size:0.85rem;text-align:center;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="../kept.html"><img src="img/icon.png" alt="Fiyonk uygulama ikonu" width="40" height="40">Fiyonk</a>
+    </div>
+  </div>
+  <main>
+    <div class="wrap">
+      <div class="card">
+        <img src="img/icon.png" alt="" width="88" height="88">
+        <h1>Fiyonk'a davet edildin</h1>
+        <p class="sub">Arkadaş grubunun hediye hafızası: istek listeleri, kim ne alıyor, ortak hediye. Yalnız arkadaşların görür.</p>
+
+        <div id="code-block" class="hidden">
+          <div class="code-label">Davet kodun</div>
+          <div class="code" id="code"></div>
+          <button class="copy" id="copy" type="button">Kodu kopyala</button>
+        </div>
+
+        <div class="actions">
+          <a class="pill" id="open-app" href="#">Uygulamada aç</a>
+          <a class="pill" id="ios-store" href="https://apps.apple.com/app/id6811387486" rel="noopener">App Store'dan indir</a>
+          <a class="pill" id="android-store" href="https://play.google.com/store/apps/details?id=com.kuzeycaliskan.kept" rel="noopener">Google Play'den indir</a>
+        </div>
+        <p class="note" id="note">Uygulamayı indirdikten sonra Arkadaşlar → Davet et ekranında kodu gir; arkadaş olursunuz.</p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">Fiyonk · <a href="privacy.html">Gizlilik</a> · <a href="terms.html">Kullanım</a></div>
+  </footer>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var code = (params.get('c') || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 16);
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+  var play = 'https://play.google.com/store/apps/details?id=com.kuzeycaliskan.kept';
+  var ios = document.getElementById('ios-store');
+  var android = document.getElementById('android-store');
+  var openApp = document.getElementById('open-app');
+  var block = document.getElementById('code-block');
+  var copy = document.getElementById('copy');
+
+  if (code) {
+    document.getElementById('code').textContent = code;
+    block.classList.remove('hidden');
+    copy.addEventListener('click', function () {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(code).then(function () {
+        copy.textContent = 'Kopyalandı';
+        setTimeout(function () { copy.textContent = 'Kodu kopyala'; }, 1600);
+      });
+    });
+  }
+
+  // The app, when installed, opens this link itself (Universal Links /
+  // App Links) and this page is never seen. The page is for everyone
+  // else: one store button for the phone in hand, both on a desktop.
+  var appUrl = 'fiyonk://invite' + (code ? '?c=' + encodeURIComponent(code) : '');
+  if (isAndroid) {
+    ios.classList.add('hidden');
+    // intent:// opens the app if it is there and falls through to Play if
+    // not — no verification needed for this path.
+    openApp.href = 'intent://invite' + (code ? '?c=' + encodeURIComponent(code) : '') +
+      '#Intent;scheme=fiyonk;package=com.kuzeycaliskan.kept;S.browser_fallback_url=' +
+      encodeURIComponent(play) + ';end';
+  } else if (isIOS) {
+    android.classList.add('hidden');
+    openApp.href = appUrl;
+  } else {
+    openApp.classList.add('hidden');
+  }
+})();
+</script>
+</body>
+</html>
