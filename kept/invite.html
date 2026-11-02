@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fiyonk'a davet</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Bir arkadaşın seni Fiyonk'a davet etti. Uygulamayı indir, davet koduyla arkadaş olun.">
+<meta name="description" content="Bir arkadaşın seni Fiyonk'a davet etti. Uygulamayı indir, kullanıcı adıyla arayıp arkadaş olun.">
 <meta property="og:title" content="Fiyonk'a davet edildin">
-<meta property="og:description" content="Arkadaş grubunun hediye hafızası. Uygulamayı indir, davet koduyla arkadaş olun.">
+<meta property="og:description" content="Arkadaş grubunun hediye hafızası. Uygulamayı indir, arkadaşını kullanıcı adıyla bul.">
 <meta property="og:image" content="https://kuzeycaliskan.github.io/kept/img/icon.png">
 <link rel="icon" type="image/png" href="img/icon.png">
 <link rel="apple-touch-icon" href="img/icon.png">
@@ -30,7 +30,7 @@
   h1{font-size:clamp(1.6rem,5vw,2rem);font-weight:700;line-height:1.15;letter-spacing:-0.015em;margin-bottom:10px;}
   .sub{color:var(--muted);font-size:1rem;margin-bottom:24px;}
   .code-label{font-size:0.82rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-weight:700;margin-bottom:6px;}
-  .code{font-size:1.8rem;font-weight:700;letter-spacing:0.18em;margin-bottom:6px;font-variant-numeric:tabular-nums;}
+  .code{font-size:1.6rem;font-weight:700;letter-spacing:0.02em;margin-bottom:6px;word-break:break-all;}
   .copy{background:none;border:0;color:var(--violet);font:inherit;font-weight:700;cursor:pointer;padding:8px 12px;border-radius:999px;}
   .copy:hover{background:var(--nude);}
   .actions{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
@@ -57,18 +57,17 @@
         <h1>Fiyonk'a davet edildin</h1>
         <p class="sub">Arkadaş grubunun hediye hafızası: istek listeleri, kim ne alıyor, ortak hediye. Yalnız arkadaşların görür.</p>
 
-        <div id="code-block" class="hidden">
-          <div class="code-label">Davet kodun</div>
-          <div class="code" id="code"></div>
-          <button class="copy" id="copy" type="button">Kodu kopyala</button>
+        <div id="who-block" class="hidden">
+          <div class="code-label">Seni davet eden</div>
+          <div class="code" id="who"></div>
+          <button class="copy" id="copy" type="button">Kullanıcı adını kopyala</button>
         </div>
 
         <div class="actions">
-          <a class="pill" id="open-app" href="#">Uygulamada aç</a>
           <a class="pill" id="ios-store" href="https://apps.apple.com/app/id6811387486" rel="noopener">App Store'dan indir</a>
           <a class="pill" id="android-store" href="https://play.google.com/store/apps/details?id=com.kuzeycaliskan.kept" rel="noopener">Google Play'den indir</a>
         </div>
-        <p class="note" id="note">Uygulamayı indirdikten sonra Arkadaşlar → Davet et ekranında kodu gir; arkadaş olursunuz.</p>
+        <p class="note" id="note">Uygulamayı indirip kaydol, sonra Ana sayfadaki aramadan bu kullanıcı adını bul ve arkadaş ekle.</p>
       </div>
     </div>
   </main>
@@ -78,60 +77,30 @@
 <script>
 (function () {
   var params = new URLSearchParams(location.search);
-  var code = (params.get('c') || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 16);
+  var who = (params.get('u') || '').trim().toLowerCase().replace(/[^a-z0-9_.]/g, '').slice(0, 30);
   var ua = navigator.userAgent || '';
   var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var isAndroid = /Android/.test(ua);
-  var play = 'https://play.google.com/store/apps/details?id=com.kuzeycaliskan.kept';
   var ios = document.getElementById('ios-store');
   var android = document.getElementById('android-store');
-  var openApp = document.getElementById('open-app');
-  var block = document.getElementById('code-block');
+  var block = document.getElementById('who-block');
   var copy = document.getElementById('copy');
 
-  if (code) {
-    document.getElementById('code').textContent = code;
+  if (who) {
+    document.getElementById('who').textContent = '@' + who;
     block.classList.remove('hidden');
     copy.addEventListener('click', function () {
       if (!navigator.clipboard) return;
-      navigator.clipboard.writeText(code).then(function () {
+      navigator.clipboard.writeText(who).then(function () {
         copy.textContent = 'Kopyalandı';
-        setTimeout(function () { copy.textContent = 'Kodu kopyala'; }, 1600);
+        setTimeout(function () { copy.textContent = 'Kullanıcı adını kopyala'; }, 1600);
       });
     });
   }
 
-  // The app, when installed, opens this link itself (Universal Links /
-  // App Links) and this page is never seen. The page is for everyone
-  // else: one store button for the phone in hand, both on a desktop.
-  var appUrl = 'fiyonk://invite' + (code ? '?c=' + encodeURIComponent(code) : '');
-  if (isAndroid) {
-    ios.classList.add('hidden');
-    // intent:// opens the app if it is there and falls through to Play if
-    // not — no verification needed for this path.
-    openApp.href = 'intent://invite' + (code ? '?c=' + encodeURIComponent(code) : '') +
-      '#Intent;scheme=fiyonk;package=com.kuzeycaliskan.kept;S.browser_fallback_url=' +
-      encodeURIComponent(play) + ';end';
-  } else if (isIOS) {
-    android.classList.add('hidden');
-    openApp.href = appUrl;
-    // A custom scheme with no app behind it is an error alert on iOS and
-    // nothing more. Try the app; if this page is still in front a moment
-    // later, the app is not there — go to the store instead.
-    openApp.addEventListener('click', function (e) {
-      e.preventDefault();
-      var fallback = setTimeout(function () {
-        location.href = ios.href;
-      }, 1500);
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) clearTimeout(fallback);
-      });
-      window.addEventListener('pagehide', function () { clearTimeout(fallback); });
-      location.href = appUrl;
-    });
-  } else {
-    openApp.classList.add('hidden');
-  }
+  // One store button for the phone in hand, both on a desktop.
+  if (isAndroid) ios.classList.add('hidden');
+  else if (isIOS) android.classList.add('hidden');
 })();
 </script>
 </body>
