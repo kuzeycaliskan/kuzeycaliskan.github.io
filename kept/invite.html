@@ -115,6 +115,20 @@
   } else if (isIOS) {
     android.classList.add('hidden');
     openApp.href = appUrl;
+    // A custom scheme with no app behind it is an error alert on iOS and
+    // nothing more. Try the app; if this page is still in front a moment
+    // later, the app is not there — go to the store instead.
+    openApp.addEventListener('click', function (e) {
+      e.preventDefault();
+      var fallback = setTimeout(function () {
+        location.href = ios.href;
+      }, 1500);
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) clearTimeout(fallback);
+      });
+      window.addEventListener('pagehide', function () { clearTimeout(fallback); });
+      location.href = appUrl;
+    });
   } else {
     openApp.classList.add('hidden');
   }
