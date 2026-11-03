@@ -64,6 +64,7 @@
         </div>
 
         <div class="actions">
+          <a class="pill" id="open-app" href="#">Uygulamada aç</a>
           <a class="pill" id="ios-store" href="https://apps.apple.com/app/id6811387486" rel="noopener">App Store'dan indir</a>
           <a class="pill" id="android-store" href="https://play.google.com/store/apps/details?id=com.kuzeycaliskan.kept" rel="noopener">Google Play'den indir</a>
         </div>
@@ -98,9 +99,39 @@
     });
   }
 
-  // One store button for the phone in hand, both on a desktop.
-  if (isAndroid) ios.classList.add('hidden');
-  else if (isIOS) android.classList.add('hidden');
+  // The app, when installed, opens this link itself (Universal Links /
+  // App Links) and this page is never seen. The page is for everyone
+  // else: one store button for the phone in hand, both on a desktop, and
+  // "open in app" for a browser that kept the link to itself.
+  var play = android.href;
+  var openApp = document.getElementById('open-app');
+  var appQuery = who ? '?u=' + encodeURIComponent(who) : '';
+  if (isAndroid) {
+    ios.classList.add('hidden');
+    // intent:// opens the app if it is there and falls through to Play if
+    // not — no verification needed for this path.
+    openApp.href = 'intent://invite' + appQuery +
+      '#Intent;scheme=fiyonk;package=com.kuzeycaliskan.kept;S.browser_fallback_url=' +
+      encodeURIComponent(play) + ';end';
+  } else if (isIOS) {
+    android.classList.add('hidden');
+    var appUrl = 'fiyonk://invite' + appQuery;
+    openApp.href = appUrl;
+    // A custom scheme with no app behind it is an error alert on iOS and
+    // nothing more. Try the app; if this page is still in front a moment
+    // later, the app is not there — go to the store instead.
+    openApp.addEventListener('click', function (e) {
+      e.preventDefault();
+      var fallback = setTimeout(function () { location.href = ios.href; }, 1500);
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) clearTimeout(fallback);
+      });
+      window.addEventListener('pagehide', function () { clearTimeout(fallback); });
+      location.href = appUrl;
+    });
+  } else {
+    openApp.classList.add('hidden');
+  }
 })();
 </script>
 </body>

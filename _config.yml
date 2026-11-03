@@ -1,0 +1,5 @@
+# GitHub Pages builds this site with Jekyll, which skips dot-folders by
+# default. The app association files for Fiyonk (iOS Universal Links,
+# Android App Links) must be served from /.well-known/, so it is included.
+include:
+  - .well-known

@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["8BNCKX6VZR.com.kuzeycaliskan.kept"],
+        "components": [
+          {
+            "/": "/kept/invite.html",
+            "comment": "Fiyonk share link; the sender's username rides in ?u="
+          }
+        ]
+      }
+    ]
+  }
+}
